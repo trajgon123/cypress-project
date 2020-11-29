@@ -12,7 +12,7 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-
+/// <reference types="cypress" />
 // Import commands.js using ES2015 syntax:
 import './commands'
 import './loginCommands'
@@ -20,6 +20,10 @@ import './navigationCommands'
 
 beforeEach(() => {
     cy.clearCookies()
+    //pokud neni vybrany env vyber defaultni
+    if (Cypress.env('host') == null) {
+        Cypress.env('host', 'prod')
+    }
 })
 
 // Alternatively you can use CommonJS syntax:

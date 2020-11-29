@@ -9,16 +9,16 @@ Cypress.Commands.add('login', (login, password) => {
     cy.get('button.btn.submit').click()
 })
 
-Cypress.Commands.add('loginDefaulUser', () => {
-    const login = Cypress.env('testUser').login
-    const password = Cypress.env('testUser').password
+Cypress.Commands.add('loginDefaultUser', () => {
+    const login = Cypress.env('prod').userLogin
+    const password = Cypress.env('prod').userPassword
     const baseUrl = Cypress.env('prod').baseUrl
 
     cy.visit(baseUrl)
     cy.get("#login").click()
     cy.get('#frm-name').type(login)
     cy.get('#frm-password').type(password)
-    cy.get('button.btn.submit').click()
+    cy.get('button.btn.submit').click().should('not.exist')
 })
 
 //prihlaseni pomoci xhr requestu
